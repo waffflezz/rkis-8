@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New Vessel</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<div th:replace="~{vessels/header :: header}"></div>
+<form th:action="@{/vessels}" th:method="POST" th:object="${vessel}">
+  <label for="name">Vessel name:</label>
+  <input type="text" id="name" name="name" th:field="*{name}" required>
+  <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error
+  </div>
+  <br>
+
+  <label for="color">Vessel color:</label>
+  <input type="text" id="color" name="color" th:field="*{color}" required>
+  <div style="color:red" th:if="${#fields.hasErrors('color')}" th:errors="*{color}">color Error
+  </div>
+  <br>
+
+  <label for="material">Vessel material:</label>
+  <input type="text" id="material" name="material" th:field="*{material}" required>
+  <div style="color:red" th:if="${#fields.hasErrors('material')}" th:errors="*{material}">
+    material Error
+  </div>
+  <br>
+
+  <label for="width">Vessel width:</label>
+  <input type="number" id="width" name="width" th:field="*{width}" required>
+  <div style="color:red" th:if="${#fields.hasErrors('width')}" th:errors="*{width}">
+    width Error
+  </div>
+  <br>
+
+  <label for="depth">Vessel depth:</label>
+  <input type="number" id="depth" name="depth" th:field="*{depth}" required>
+  <div style="color:red" th:if="${#fields.hasErrors('depth')}" th:errors="*{depth}">
+    depth Error
+  </div>
+  <br>
+
+  <label for="quantity">Vessel quantity:</label>
+  <input type="number" id="quantity" name="quantity" th:field="*{quantity}" required>
+  <div style="color:red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">
+    quantity Error
+  </div>
+  <br>
+
+  <label for="price">Vessel price:</label>
+  <input type="text" inputmode="decimal" id="price" name="price" pattern="[0-9]*[.,]?[0-9]*"
+         th:field="*{price}" required>
+  <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error
+  </div>
+  <br>
+
+  <button type="submit" name="action">Submit</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${vessel.getName()}"></title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<div th:replace="~{vessels/header :: header}"></div>
+<div class="vessel">
+  <div><span class="vessel-properties-name">Название: </span><span th:text="${vessel.getName()}"></span></div>
+  <div><span class="vessel-properties-name">Цвет: </span><span th:text="${vessel.getColor()}"></span></div>
+  <div><span class="vessel-properties-name">Материал: </span><span th:text="${vessel.getMaterial()}"></span></div>
+  <div><span class="vessel-properties-name">Ширина: </span><span th:text="${vessel.getWidth()}"></span></div>
+  <div><span class="vessel-properties-name">Глубина: </span><span th:text="${vessel.getDepth()}"></span></div>
+  <div><span class="vessel-properties-name">Количество: </span><span th:text="${vessel.getQuantity()}"></span></div>
+  <div><span class="vessel-properties-name">Цена: </span><span th:text="${vessel.getPrice() + ' RUB.'}"></span></div>
+  <a class="waves-effect waves-light btn"
+     th:href="@{/vessels/{id}/edit(id=${vessel.getId()})}">Edit</a>
+  <form th:method="DELETE" th:action="@{/vessels/{id}(id=${vessel.getId()})}"
+        style="display: inline;">
+    <button type="submit" name="action">Delete</button>
+  </form>
+  <form th:method="PATCH" th:action="@{/vessels/{id}/buy(id=${vessel.getId()})}"
+        style="display: inline;">
+    <button type="submit" name="action">Buy</button>
+  </form>
+</div>
+</body>
+</html>

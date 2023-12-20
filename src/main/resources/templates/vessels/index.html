@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Vessels</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<main class="container">
+  <div th:replace="~{vessels/header :: header}"></div>
+  <form th:action="@{/vessels/new}" th:method="GET">
+    <button type="submit">Добавить новую посуду</button>
+  </form>
+
+  <form th:action="@{/vessels}" th:method="get">
+    <label for="width">Максимальная ширина посуды:</label>
+    <input type="text" inputmode="decimal" id="width" name="width" pattern="[0-9]*[.,]?[0-9]*"
+           required>
+    <br/><br/>
+    <button type="submit" class="">Найти по ширине</button>
+  </form>
+
+  <div class="vessel-container">
+    <div th:each="vessel : ${vessels}" class="vessel">
+      <div class="vessel-properties">
+        <div><span class="vessel-properties-name">Название: </span><span th:text="${vessel.getName()}"></span></div>
+        <div><span class="vessel-properties-name">Цвет: </span><span th:text="${vessel.getColor()}"></span></div>
+        <div><span class="vessel-properties-name">Материал: </span><span th:text="${vessel.getMaterial()}"></span></div>
+        <div><span class="vessel-properties-name">Ширина: </span><span th:text="${vessel.getWidth()}"></span></div>
+        <div><span class="vessel-properties-name">Глубина: </span><span th:text="${vessel.getDepth()}"></span></div>
+        <div><span class="vessel-properties-name">Количество: </span><span th:text="${vessel.getQuantity()}"></span></div>
+        <div><span class="vessel-properties-name">Цена: </span><span th:text="${vessel.getPrice() + ' RUB.'}"></span></div>
+        <a th:href="@{/vessels/{id}(id=${vessel.getId()})}"><button class="vessel-button">open</button></a>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
